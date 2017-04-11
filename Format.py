@@ -1,8 +1,23 @@
-with open('d:\\data\\corpus.dat', 'r') as r:
-    lines = r.readlines()
-with open('d:\\data\\corpus.txt', 'w') as w:
-    for l in lines:
-        l.replace('<content>', '').replace('</content>', '').replace('\t', '').replace('\n', '').replace(' ', '')
-        if l.strip() == "":
+# coding=utf-8
+
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+
+def format(input_file_name, output_file_name):
+
+    input_file = open(input_file_name, 'r')
+    output_file = open(output_file_name, 'w')
+
+    lines = input_file.readlines()
+
+    for line in lines:
+        line.replace('<content>', '').replace('</content>', '').replace('\t', '').replace('\n', '').replace(' ', '')
+        if line.strip() == "":
             continue
-        w.write(l)
+        output_file.write(line)
+
+    input_file.close()
+    output_file.close()
